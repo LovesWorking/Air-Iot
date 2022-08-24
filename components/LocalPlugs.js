@@ -3,12 +3,13 @@ import Column from '../components/Column'
 export default function AirDevices() {
   const [devices, setDevices] = useState([]); // Array of components
   const [airDevices, setAirDevices] = useState([]);// Array of devices
+  const [refreshs, setRefreshs] = useState(0); // Refresh button state
+
   const [showLocalPlugs, setShowLocalplugs] = useState(false);
   useEffect(() => {
     getLocalDevices();
     localPlugComponents();
-    console.log(99);
-  }, [airDevices])
+  }, [airDevices, refreshs])
   const getLocalDevices = () => {// Grabs array of devices from local storeage
     fetch('/api/findlocalplugs')
       .then(res => res.json())
@@ -20,7 +21,7 @@ export default function AirDevices() {
   const localPlugComponents = () => {
     const output = [];
     for (let i = 0; i < airDevices.length; i++) {
-      output.push(<div key={i} className='m-0.5   bg-white overflow-hidden flex items-center gap-4 p-4   hover:bg-emerald-300 cursor-pointer '>
+      output.push(<div key={i} className={'selection-primary'}>
         <p className='font-medium' >  {airDevices[i]?.name}</p>
         <div className='font-medium'> {airDevices[i]?.ip} </div>
         <div className='font-medium'> {airDevices[i]?.state ? '🟢' : '🔴'} </div>
@@ -35,6 +36,8 @@ export default function AirDevices() {
       setShowColumn={setShowLocalplugs}
       getDevice={localPlugComponents}
       devicesArr={devices}
-      deviceType={'Local Plugs'} />
+      deviceType={'Local Plugs'}
+      setRefreshs={setRefreshs}
+      refreshs={refreshs} />
   </>);
 }

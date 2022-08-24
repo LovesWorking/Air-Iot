@@ -5,10 +5,12 @@ export default function PlugDevices() {
   const [devices, setDevices] = useState([]);// Array of components
   const [plugDevices, setPlugDevices] = useState([]);// Array of devices
   const [showPlug, setShowplug] = useState(false);
+  const [refreshs, setRefreshs] = useState(0);
+
   useEffect(() => {
     getLocalDevices();
     plugComponents();
-  }, [plugDevices])
+  }, [plugDevices, refreshs])
   const getLocalDevices = () => {// Grabs array of devices from local storeage
     const storage = JSON.parse(localStorage.getItem('plugDeviceList'));
     storage && (plugDevices.length != storage.length) && setPlugDevices(storage)
@@ -24,7 +26,7 @@ export default function PlugDevices() {
   const plugComponents = () => {
     const output = [];
     for (let i = 0; i < plugDevices.length; i++) {
-      output.push(<div key={i} className='m-0.5   bg-white overflow-hidden flex items-center gap-4 p-4   hover:bg-emerald-300 cursor-pointer '>
+      output.push(<div key={i} className={'selection-primary'}>
         <p className='font-medium' >  {plugDevices[i].name}</p>
         <div className='font-medium'> {plugDevices[i].ip} </div>
         <div id={i} onClick={(e) => { deleteLocalDevice(e.target.id) }}>❌</div>
@@ -40,6 +42,9 @@ export default function PlugDevices() {
       addDevice={() => { addDevice('plug', setPlugDevices) }}
       getDevice={plugComponents}
       devicesArr={devices}
-      deviceType={'Plug Devices'} />
+      deviceType={'Plug Devices'}
+      setRefreshs={setRefreshs}
+      refreshs={refreshs} />
+
   </>);
 }

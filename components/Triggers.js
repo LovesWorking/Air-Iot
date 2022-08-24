@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Column from './Column';
 import addDevice from '../lib/addDevice';
 export default function Triggers() {
   const [devices, setDevices] = useState([]);// Array of components
   const [triggers, setTriggers] = useState([]);// Array of devices
   const [showTriggers, setShowTriggers] = useState(false);
+  // Triggeradder states
   useEffect(() => {
     getLocalDevices();
     plugComponents();
@@ -14,6 +15,7 @@ export default function Triggers() {
     storage && (triggers.length != storage.length) && setTriggers(storage)
   }
   const deleteLocalDevice = (index) => {// Filters out index we want removed
+    console.log('delete ', index);
     const storage = JSON.parse(localStorage.getItem('triggerDeviceList'));
     const newStoreage = storage.filter((el, i) => {
       return i != index
@@ -24,41 +26,34 @@ export default function Triggers() {
   const plugComponents = () => {
     const output = [];
     for (let i = 0; i < triggers.length; i++) {
-      output.push(<div key={i} className='m-0.5   bg-white overflow-hidden flex items-center gap-4 p-4   hover:bg-emerald-300 cursor-pointer '>
-        <p className='font-medium' >  {i} {triggers[i].name}</p>
-        <div className='font-medium'> {triggers[i].ip} </div>
+      output.push(<div key={i} className={'selection-primary'}>
+        {' ' + triggers[i].plug.Name + ' '}
+        will turn  {' ' + triggers[i].onOrOF + ' '}
+        when
+        {' ' + triggers[i].air.Name + ' '}
+        {' ' + triggers[i].tempOrHumid + ' '}
+        goes
+        {' ' + triggers[i].underOver + ' '}
+        {' ' + triggers[i].limit + ' '}
         <div id={i} onClick={(e) => { deleteLocalDevice(e.target.id) }}>❌</div>
       </div >)
     }
     setDevices(output)
   }
-  function addTrigger(triggers) {
-    const triggerObject = {
-      airName: triggers.airName,
-      airIP: triggers.airIP,
-      temp: {
-        over: triggers.temp,
-        under: triggers.temp,
-      },
-      humid: {
-        over: triggers.humid,
-        under: triggers.humid,
-      },
-      plug: {
-        plugName: triggers.plugName,
-        plugIP: triggers.plugIP,
-      },
-    };
-    addDevice('trigger', setTriggers, triggerObject);
+  function addTrigger() {
+    addDevice('trigger', setTriggers);
   }
+
   return (<>
     <Column
       showColumn={showTriggers}
       setShowColumn={setShowTriggers}
-      addDevice={addTrigger}
       getDevice={plugComponents}
       devicesArr={devices}
-      deviceType={'Triggers'} />
+      deviceType={'Triggers'}
+      showTriggerAdder={true}
+      setTriggers={setTriggers}
+    />
   </>);
 }
 

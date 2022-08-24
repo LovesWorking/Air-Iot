@@ -4,11 +4,13 @@ import addDevice from '../lib/addDevice';
 export default function AirDevices() {
   const [devices, setDevices] = useState([]); // Array of components
   const [airDevices, setAirDevices] = useState([]);// Array of devices
+  const [refreshs, setRefreshs] = useState(0); // Refresh button state
+
   const [showAir, setShowAir] = useState(false);
   useEffect(() => {
     getLocalDevices();
     airComponents();
-  }, [airDevices])
+  }, [airDevices, refreshs])
   const getLocalDevices = () => {// Grabs array of devices from local storeage
     const storage = JSON.parse(localStorage.getItem('airDeviceList'));
     storage && (airDevices.length != storage.length) && setAirDevices(storage)
@@ -24,7 +26,7 @@ export default function AirDevices() {
   const airComponents = () => {
     const output = [];
     for (let i = 0; i < airDevices.length; i++) {
-      output.push(<div key={i} className='m-0.5   bg-white overflow-hidden flex items-center gap-4 p-4   hover:bg-emerald-300 cursor-pointer '>
+      output.push(<div key={i} className={'selection-primary'}>
         <p className='font-medium' >  {airDevices[i]?.name}</p>
         <div className='font-medium'> {airDevices[i]?.ip} </div>
         <div id={i} onClick={(e) => { deleteLocalDevice(e.target.id) }}>❌</div>
@@ -40,6 +42,8 @@ export default function AirDevices() {
       addDevice={() => { addDevice('air', setAirDevices) }}
       getDevice={airComponents}
       devicesArr={devices}
-      deviceType={'Air Devices'} />
+      deviceType={'Air Devices'}
+      setRefreshs={setRefreshs}
+      refreshs={refreshs} />
   </>);
 }
