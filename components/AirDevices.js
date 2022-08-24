@@ -4,13 +4,11 @@ import addDevice from '../lib/addDevice';
 export default function AirDevices() {
   const [devices, setDevices] = useState([]); // Array of components
   const [airDevices, setAirDevices] = useState([]);// Array of devices
-  const [refreshs, setRefreshs] = useState(0); // Refresh button state
 
-  const [showAir, setShowAir] = useState(false);
   useEffect(() => {
     getLocalDevices();
     airComponents();
-  }, [airDevices, refreshs])
+  }, [airDevices])
   const getLocalDevices = () => {// Grabs array of devices from local storeage
     const storage = JSON.parse(localStorage.getItem('airDeviceList'));
     storage && (airDevices.length != storage.length) && setAirDevices(storage)
@@ -37,13 +35,8 @@ export default function AirDevices() {
 
   return (<>
     <Column
-      showColumn={showAir}
-      setShowColumn={setShowAir}
       addDevice={() => { addDevice('air', setAirDevices) }}
-      getDevice={airComponents}
       devicesArr={devices}
-      deviceType={'Air Devices'}
-      setRefreshs={setRefreshs}
-      refreshs={refreshs} />
+      deviceType={'Air Devices'} />
   </>);
 }

@@ -4,13 +4,11 @@ import addDevice from '../lib/addDevice';
 export default function PlugDevices() {
   const [devices, setDevices] = useState([]);// Array of components
   const [plugDevices, setPlugDevices] = useState([]);// Array of devices
-  const [showPlug, setShowplug] = useState(false);
-  const [refreshs, setRefreshs] = useState(0);
 
   useEffect(() => {
     getLocalDevices();
     plugComponents();
-  }, [plugDevices, refreshs])
+  }, [plugDevices])
   const getLocalDevices = () => {// Grabs array of devices from local storeage
     const storage = JSON.parse(localStorage.getItem('plugDeviceList'));
     storage && (plugDevices.length != storage.length) && setPlugDevices(storage)
@@ -37,14 +35,9 @@ export default function PlugDevices() {
 
   return (<>
     <Column
-      showColumn={showPlug}
-      setShowColumn={setShowplug}
       addDevice={() => { addDevice('plug', setPlugDevices) }}
-      getDevice={plugComponents}
       devicesArr={devices}
       deviceType={'Plug Devices'}
-      setRefreshs={setRefreshs}
-      refreshs={refreshs} />
-
+    />
   </>);
 }

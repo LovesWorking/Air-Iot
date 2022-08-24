@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import addDevice from '../lib/addDevice';
 
-export default function TriggerAdder({ setTriggers, refresh }) {
+export default function TriggerAdder({ setTriggers }) {
   const [airDevices, setAirDevices] = useState([])
   const [plugDevices, setPlugDevices] = useState([])
   const air = useRef(null);
@@ -28,7 +28,7 @@ export default function TriggerAdder({ setTriggers, refresh }) {
   }
   useEffect(() => {
     setLocalDevices()
-  }, [refresh])
+  }, [])
   function DevicesToOptions(arr, deviceType) {
     return arr?.map((el, i) => {
       return (<>
@@ -44,13 +44,13 @@ export default function TriggerAdder({ setTriggers, refresh }) {
     <div className='flex flex-col space-y-10'>
       <div className="custom-select" >
         <p className=" flex-wrap">
-          Turn plug
+          Turn
           <select ref={plug}>
             {DevicesToOptions(plugDevices, 'plug')}
           </select>
           <select ref={onOrOF}>
-            <option>ON</option>
-            <option>OFF</option>
+            <option>on</option>
+            <option>off</option>
           </select>
           when
           <select ref={air}>
@@ -58,22 +58,20 @@ export default function TriggerAdder({ setTriggers, refresh }) {
           </select>
 
           <select ref={tempOrHumid}>
-            <option>Temp</option>
-            <option>Humid</option>
+            <option>tempature</option>
+            <option>humidity</option>
           </select>
           goes
           <select ref={underOver}>
-            <option>Over</option>
-            <option>Under</option>
+            <option>over</option>
+            <option>under</option>
           </select>
           <input ref={limit} className="w-10" defaultValue={75} />
         </p>
         <button onClick={addTriggers} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Add Trigger Event
         </button>
-        <button onClick={setLocalDevices} className="m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Refresh
-        </button>
+
       </div>
 
     </div>

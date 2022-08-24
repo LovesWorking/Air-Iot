@@ -4,8 +4,6 @@ import addDevice from '../lib/addDevice';
 export default function Triggers() {
   const [devices, setDevices] = useState([]);// Array of components
   const [triggers, setTriggers] = useState([]);// Array of devices
-  const [showTriggers, setShowTriggers] = useState(false);
-  // Triggeradder states
   useEffect(() => {
     getLocalDevices();
     plugComponents();
@@ -46,9 +44,6 @@ export default function Triggers() {
 
   return (<>
     <Column
-      showColumn={showTriggers}
-      setShowColumn={setShowTriggers}
-      getDevice={plugComponents}
       devicesArr={devices}
       deviceType={'Triggers'}
       showTriggerAdder={true}

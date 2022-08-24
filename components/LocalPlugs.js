@@ -3,13 +3,11 @@ import Column from '../components/Column'
 export default function AirDevices() {
   const [devices, setDevices] = useState([]); // Array of components
   const [airDevices, setAirDevices] = useState([]);// Array of devices
-  const [refreshs, setRefreshs] = useState(0); // Refresh button state
-
   const [showLocalPlugs, setShowLocalplugs] = useState(false);
   useEffect(() => {
     getLocalDevices();
     localPlugComponents();
-  }, [airDevices, refreshs])
+  }, [airDevices])
   const getLocalDevices = () => {// Grabs array of devices from local storeage
     fetch('/api/findlocalplugs')
       .then(res => res.json())
@@ -32,12 +30,8 @@ export default function AirDevices() {
 
   return (<>
     <Column
-      showColumn={showLocalPlugs}
-      setShowColumn={setShowLocalplugs}
-      getDevice={localPlugComponents}
       devicesArr={devices}
       deviceType={'Local Plugs'}
-      setRefreshs={setRefreshs}
-      refreshs={refreshs} />
+    />
   </>);
 }
