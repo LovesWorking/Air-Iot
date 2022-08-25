@@ -5,6 +5,7 @@ import Triggers from '../components/Triggers';
 import addDevice from '../lib/addDevice';
 import LocalPlugs from '../components/LocalPlugs'
 import SideBar from '../components/SideBar';
+import Events from '../components/Events';
 export default function Home() {
   const [tab, setTab] = useState(-1);
   function ReturnTab(tab) {
@@ -19,12 +20,12 @@ export default function Home() {
       case 3:
         return <Triggers />
       default:
-        return <></>
+        return <Events />
     }
     return output;
   }
   return (<>
-    <div className='flex'>
+    <div className='flex flex-col '>
       <SideBar curTab={tab} setTab={setTab} />
       {(ReturnTab(tab))}
     </div>

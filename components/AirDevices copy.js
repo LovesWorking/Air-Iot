@@ -42,7 +42,7 @@ export default function AirDevices({ addDevice }) {
       await fetchWithTimeout(url)
         .then(res => res.json())
         .then(results => {
-          output.push(<div key={i} className='m-0.5   bg-white overflow-hidden flex items-center gap-4 p-4   hover:bg-emerald-300 cursor-pointer '>
+          output.push(<div key={i + 'air'} className='m-0.5   bg-white overflow-hidden flex items-center gap-4 p-4   hover:bg-emerald-300 cursor-pointer '>
             <p className='font-medium' >  {airDevices[i].name}</p>
             <div className='font-medium' > 🌡  {Math.ceil(results.temp * 9 / 5 + 32)} F </div>
             <div className='font-medium'> 💧  {Math.ceil(results.humid)} %</div>
@@ -51,7 +51,7 @@ export default function AirDevices({ addDevice }) {
           </div >)
         })
         .catch(err => {
-          output.push(<div key={i} className='m-0.5   bg-white overflow-hidden flex items-center gap-4 p-4   hover:bg-emerald-300 cursor-pointer '>
+          output.push(<div key={i + 'air'} className='m-0.5   bg-white overflow-hidden flex items-center gap-4 p-4   hover:bg-emerald-300 cursor-pointer '>
             <p className='font-medium' >  {airDevices[i].name}</p>
             <p className='font-medium'> {airDevices[i].ip}</p>
             <p className='fa fa-chain-broken' />

@@ -1,26 +1,18 @@
 import { useState, useEffect, useRef } from 'react';
 import Column from './Column';
 import addDevice from '../lib/addDevice';
+import getLocalDevices from '../lib/getLocalDevices';
+import deleteLocalDevice from '../lib/deleteDevice';
+import { RiDeleteBin6Line } from 'react-icons/ri';
+
 export default function Triggers() {
   const [devices, setDevices] = useState([]);// Array of components
   const [triggers, setTriggers] = useState([]);// Array of devices
   useEffect(() => {
-    getLocalDevices();
+    getLocalDevices('trigger', triggers, setTriggers)
     plugComponents();
   }, [triggers])
-  const getLocalDevices = () => {// Grabs array of devices from local storeage
-    const storage = JSON.parse(localStorage.getItem('triggerDeviceList'));
-    storage && (triggers.length != storage.length) && setTriggers(storage)
-  }
-  const deleteLocalDevice = (index) => {// Filters out index we want removed
-    console.log('delete ', index);
-    const storage = JSON.parse(localStorage.getItem('triggerDeviceList'));
-    const newStoreage = storage.filter((el, i) => {
-      return i != index
-    });
-    storage && localStorage.setItem('triggerDeviceList', JSON.stringify(newStoreage))
-    setTriggers(newStoreage);
-  }
+
   const plugComponents = () => {
     const output = [];
     for (let i = 0; i < triggers.length; i++) {
@@ -33,7 +25,9 @@ export default function Triggers() {
         goes
         {' ' + triggers[i].underOver + ' '}
         {' ' + triggers[i].limit + ' '}
-        <div id={i} onClick={(e) => { deleteLocalDevice(e.target.id) }}>❌</div>
+        <div className='text-rose-700'>
+          <RiDeleteBin6Line size='20' onClick={() => { deleteLocalDevice('trigger', i, setTriggers) }} />
+        </div>
       </div >)
     }
     setDevices(output)
