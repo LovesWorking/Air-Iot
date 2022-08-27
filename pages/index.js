@@ -1,9 +1,9 @@
 import { useRef, useState, useEffect } from 'react';
 import AirDevices from '../components/AirDevices'
 import PlugDevices from '../components/PlugDevices'
-import Triggers from '../components/Triggers';
+import LocalTriggers from '../components/LocalTriggers';
 import addDevice from '../lib/addDevice';
-import LocalPlugs from '../components/LocalPlugs'
+import LocalDeviceScan from '../components/LocalDeviceScan'
 import SideBar from '../components/SideBar';
 import Events from '../components/Events';
 export default function Home() {
@@ -16,9 +16,9 @@ export default function Home() {
       case 1:
         return <PlugDevices />
       case 2:
-        return <LocalPlugs />
+        return <LocalDeviceScan />
       case 3:
-        return <Triggers />
+        return <LocalTriggers />
       default:
         return <Events />
     }

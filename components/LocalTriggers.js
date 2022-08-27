@@ -5,7 +5,7 @@ import getLocalDevices from '../lib/getLocalDevices';
 import deleteLocalDevice from '../lib/deleteDevice';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 
-export default function Triggers() {
+export default function LocalTriggers() {
   const [devices, setDevices] = useState([]);// Array of components
   const [triggers, setTriggers] = useState([]);// Array of devices
   useEffect(() => {

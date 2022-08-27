@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import addDevice from '../lib/addDevice';
 
-export default function TriggerAdder({ setTriggers }) {
+export default function TriggerForm({ setTriggers }) {
   const [airDevices, setAirDevices] = useState([])
   const [plugDevices, setPlugDevices] = useState([])
   const air = useRef(null);
