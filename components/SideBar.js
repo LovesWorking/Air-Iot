@@ -1,8 +1,6 @@
-import { BsPlus, BsFillLightningFill } from 'react-icons/bs';
-import { FaFire, FaPoo, FaLaptopHouse } from 'react-icons/fa';
-import { WiThermometer } from 'react-icons/wi';
-import { TbPlug } from 'react-icons/tb';
-import { GiGreenhouse, GiRayGun, GiRadarSweep } from 'react-icons/gi';
+import { TbLeaf, TbPlug } from 'react-icons/tb';
+import { SiEventstore } from 'react-icons/si';
+import { GiRadarSweep } from 'react-icons/gi';
 
 export default function SideBar({ setTab, curTab }) {
   const SideBarIcon = ({ icon, text = 'tooltip 💡', tab }) => (
@@ -15,11 +13,26 @@ export default function SideBar({ setTab, curTab }) {
     </div >
   );
   return (<>
-    <div className=" justify-between p-2  m-0 flex  bg-gray-100 text-white shadow-lg md:flex-col md:h-screen md:w-16 fixed bottom-0 inset-x-0 md:justify-start  ">
-      <SideBarIcon icon={<GiGreenhouse size='fill' />} text={"Air Devices"} tab={0} />
-      <SideBarIcon icon={<TbPlug size='fill' />} text={'Plug Devices'} tab={1} />
-      <SideBarIcon icon={<GiRadarSweep size='fill' />} text={'Scan Local Netowrk For Plugs'} tab={2} />
-      <SideBarIcon icon={<GiRayGun size='fill' />} text={'Trigger Events'} tab={3} />
+    <div className=" justify-between p-2 pt-0  m-0 flex  bg-gray-100 text-white shadow-lg md:flex-col md:h-screen md:w-16 fixed bottom-0 inset-x-0 md:justify-start  ">
+      <div className='flex flex-col text-center'>
+        <SideBarIcon icon={<TbLeaf size='50' />} text={"Air Devices"} tab={0} />
+        <p className='select-none  font-bold  text-slate-600'>Air</p>
+      </div>
+      <div className='flex flex-col text-center'>
+        <SideBarIcon icon={<TbPlug size='50' />} text={'Plug Devices'} tab={1} />
+        <p className='select-none  font-bold  text-slate-600'>Plugs</p>
+      </div>
+
+      <div className='flex flex-col text-center'>
+        <SideBarIcon icon={<GiRadarSweep size='50' />} text={'Scan Netowrk'} tab={2} />
+        <p className='select-none  font-bold  text-slate-600'>Scan</p>
+      </div>
+
+      <div className='flex flex-col text-center'>
+        <SideBarIcon icon={<SiEventstore size='50' />} text={'Events'} tab={3} />
+        <p className='select-none  font-bold  text-slate-600'>Events</p>
+      </div>
+
     </div>
   </>)
 }

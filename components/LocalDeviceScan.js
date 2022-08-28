@@ -5,18 +5,19 @@ export default function LocalDevices() {
   const [devices, setDevices] = useState([]); // Array of components
   const [airDevices, setAirDevices] = useState([]);// Array of devices
   useEffect(() => {
-    fetch('/api/localDevices')
-      .then(res => res.json())
-      .then(results => {
-        (airDevices.length !== results.length) && setAirDevices(results.localDevices)
-      })
-    deviceToComponent(null, airDevices, setAirDevices, setDevices)
-  }, [airDevices])
+    const getDevices = async () => {
+      const res = await fetch('/api/localDevices')
+      const data = await res.json()
+      setAirDevices(data.localDevices)
+      deviceToComponent(null, data.localDevices, setAirDevices, setDevices)
+    }
+    getDevices();
+  }, [])
 
   return (<>
     <Column
       devicesArr={devices}
-      deviceType={'Local Plugs'}
+      deviceType={'Devices'}
     />
   </>);
 }

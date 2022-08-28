@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import addDevice from '../lib/addDevice';
 
-export default function TriggerForm({ setTriggers }) {
+export default function EventForm({ setEvents }) {
   const [airDevices, setAirDevices] = useState([])
   const [plugDevices, setPlugDevices] = useState([])
   const air = useRef(null);
@@ -11,8 +11,8 @@ export default function TriggerForm({ setTriggers }) {
   const onOrOF = useRef(null);
   const limit = useRef(null);
 
-  function addTriggers() {
-    const triggerObject = {
+  function addEvent() {
+    const eventObject = {
       air: JSON.parse(air.current.value),
       underOver: underOver.current.value,
       tempOrHumid: tempOrHumid.current.value,
@@ -20,7 +20,7 @@ export default function TriggerForm({ setTriggers }) {
       onOrOF: onOrOF.current.value,
       limit: limit.current.value,
     };
-    addDevice('trigger', setTriggers, triggerObject);
+    addDevice('event', setEvents, eventObject);
   }
   function setLocalDevices() {
     setAirDevices(JSON.parse(localStorage.getItem('airDeviceList')))
@@ -31,18 +31,17 @@ export default function TriggerForm({ setTriggers }) {
   }, [])
   function DevicesToOptions(arr, deviceType) {
     return arr?.map((el, i) => {
-      return (<>
-        <option
-          value={JSON.stringify({ Ip: el.ip, Name: el.name })}
-        >{el.name}</option>
-      </>)
+      return (<option key={i + { deviceType }}
+        value={JSON.stringify({ Ip: el.ip, Name: el.name })}
+      >{el.name}</option>
+      )
     })
 
   }
   return (<>
     <br />
-    <div className='flex flex-col space-y-10'>
-      <div className="custom-select" >
+    <div className='flex flex-col space-y-10 '>
+      <div className="custom-select " >
         <p className=" flex-wrap">
           Turn
           <select ref={plug}>
@@ -68,13 +67,10 @@ export default function TriggerForm({ setTriggers }) {
           </select>
           <input ref={limit} className="w-10" defaultValue={75} />
         </p>
-        <button onClick={addTriggers} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Add Trigger Event
+        <button onClick={addEvent} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Add  Event
         </button>
-
       </div>
-
     </div>
-
   </>)
 }

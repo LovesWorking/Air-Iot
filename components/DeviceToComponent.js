@@ -3,10 +3,10 @@ import deleteLocalDevice from '../lib/deleteDevice';
 export default function deviceToComponent(type, device, setDevice, setDeviceComponents) {
   const output = [];
   for (let i = 0; i < device.length; i++) {
-    output.push(<div div key={i} className={'selection-primary'} >
+    output.push(<div key={i + 'selection-primary'} className={'selection-primary'} >
       <p className='font-medium' >  {device[i]?.name}</p>
       <div className='font-medium'> {device[i]?.ip} </div>
-      {device[i].state ?
+      {device[i].state !== undefined ?
         <div className='font-medium'> {device[i]?.state ? '🟢' : '🔴'} </div>
         :
         <div className='text-rose-700'>

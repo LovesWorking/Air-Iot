@@ -1,12 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+:root {
+  --color-sky: 14 165 233;
+  --color-brand: var(--color-sky);
+}
 body {
   background-color: bg-slate-50/90;
 }
 @layer components {
   .selection-primary {
-    @apply flex flex-col bg-white p-1 m-1 shadow-lg rounded-xl hover:bg-sky-500 cursor-pointer;
+    @apply select-none flex flex-col bg-white 
+    p-1 m-1 shadow-lg rounded-xl
+    hover:border-2 border-sky-600 cursor-pointer 
+     hover:opacity-75 transition duration-300 ease-in-out;
   }
   .sidebar-icon {
     @apply relative flex items-center 
@@ -17,10 +24,13 @@ body {
     transition-all duration-300 ease-linear cursor-pointer;
   }
   .sidebar-tooltip {
-    @apply absolute w-auto p-2 m-2 min-w-max left-14
+    @apply absolute select-none w-auto p-2 m-2 min-w-max -top-10 -left-5
     rounded-md shadow-md
     text-white bg-gray-900 
     text-xs font-bold
-    transition-all duration-100 scale-0 origin-left;
+    transition-all duration-100 scale-0 origin-left md:right-14;
+  }
+  .text-sizes {
+    @apply select-none text-sm;
   }
 }
