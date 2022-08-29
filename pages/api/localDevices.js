@@ -57,7 +57,9 @@ export default async function localAir(req, res) {
 
   setTimeout(() => { // Delay until we send a response as ping.sys.probe doesn't seem to work with await without a huge delay
     findAwair(addressList)
-      .then(result => res.status(200).json({ localDevices: [...devices, ...result] }))
+      .then(result => {
+        return res.status(200).json({ localDevices: [...devices, ...result] })
+      })
   }, 1000);
 
 }

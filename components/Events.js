@@ -3,18 +3,21 @@ import getDeviceInfo from '../lib/deviceInfo';
 import { FaTemperatureLow } from 'react-icons/fa';
 import { GiDroplets } from 'react-icons/gi';
 import { TbPlugConnectedX } from 'react-icons/tb';
+import { MdOfflineBolt } from 'react-icons/md';
+import EventChecker from './EventChecker';
 export default function Events() {
   const [events, setEvents] = useState([]);// Array of events
   const [deviceInfo, setDeviceInfo] = useState([])//Array of air quality results from air device
+  const [refresh, setRefresh] = useState(false);
   useEffect(() => {
-    console.log(99);
     getLocalDevices();
     const getData = async () => {
       const data = await getDeviceInfo(events)
       setDeviceInfo(data);
     }
     getData()
-  }, [events])
+  }, [events, refresh])
+
   const getLocalDevices = () => {// Grabs array of events events from local storeage
     const storage = JSON.parse(localStorage.getItem('eventDeviceList'));
     storage && (events.length != storage.length) && setEvents(storage)
@@ -43,10 +46,13 @@ export default function Events() {
                 }
               </div>
             </div>
-            <div className='text-center m-2'>
+            <div className='text-center m-1 flex flex-col items-center'>
               {el.plug.Name}
               {deviceInfo[i]?.plug?.status == -1 ?
-                <TbPlugConnectedX size='35' color='blue' /> : deviceInfo[i]?.plug?.status == 1 ? '🟢' : '🔴'}
+                <TbPlugConnectedX size='35' color='00BFFF' /> :
+                deviceInfo[i]?.plug?.status == 1 ?
+                  <MdOfflineBolt size='25' color='#00BFFF' /> :
+                  <MdOfflineBolt size='25' color='gray' />}
             </div>
             <p className='text-center m-2'>
               Plug will turn
@@ -65,6 +71,7 @@ export default function Events() {
     </>)
   }
   return (<>
+    <EventChecker deviceInfo={deviceInfo} events={events} setRefresh={setRefresh} />
     <EventsToComponents />
   </>)
 }
