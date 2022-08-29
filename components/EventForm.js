@@ -57,8 +57,8 @@ export default function EventForm({ setEvents }) {
           </select>
 
           <select ref={tempOrHumid}>
-            <option>tempature</option>
-            <option>humidity</option>
+            <option>temp</option>
+            <option>humid</option>
           </select>
           goes
           <select ref={underOver}>

@@ -50,7 +50,7 @@ export default function Events() {
               {el.plug.Name}
               {deviceInfo[i]?.plug?.status == -1 ?
                 <TbPlugConnectedX size='35' color='00BFFF' /> :
-                deviceInfo[i]?.plug?.status == 1 ?
+                deviceInfo[i]?.plug?.status == 'on' ?
                   <MdOfflineBolt size='25' color='#00BFFF' /> :
                   <MdOfflineBolt size='25' color='gray' />}
             </div>
