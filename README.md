@@ -1,13 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is used for automating non-iot devices through air quality data.
 
-## Getting Started
+## Currently only supports the Awair Element for air quality and TP-Link - Kasa Smart Wi-Fi Plugs
 
-First, run the development server:
+## Quickstart
+
+First, run start the Next.JS app:
 
 ```bash
-npm run dev
-# or
-yarn dev
+npm i
+# Then
+npm run build
+# Then
+npm start
+```
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
