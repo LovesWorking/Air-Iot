@@ -10,8 +10,15 @@ export default function deviceToComponent(type, device, setDevice, setDeviceComp
       <div className='font-medium'> {device[i]?.ip} </div>
       {device[i].state !== undefined ?
         <div className='font-medium'> {device[i]?.state ?
-          <MdOfflineBolt size='25' color='#00BFFF' />
-          : <MdOfflineBolt size='25' color='gray' />} </div>
+          <>
+            <MdOfflineBolt size='25' color='#00BFFF' />
+          </>
+          :
+          <>
+            <MdOfflineBolt size='25' color='gray' />
+          </>
+
+        }</div>
         :
         <div className='text-rose-700'>
           <RiDeleteBin6Line size='20' onClick={() => { deleteLocalDevice(type, i, setDevice) }} />

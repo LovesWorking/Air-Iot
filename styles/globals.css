@@ -17,7 +17,7 @@ body {
   }
   .sidebar-icon {
     @apply relative flex items-center 
-    h-12 w-12 mt-2 mb-2 shadow-lg
+    h-12 w-12 mb-2 shadow-lg
     bg-white text-gray-500
     hover:bg-white hover:text-sky-500
     rounded-3xl hover:rounded-xl
@@ -28,7 +28,7 @@ body {
     rounded-md shadow-md
     text-white bg-gray-900 
     text-xs font-bold
-    transition-all duration-100 scale-0 origin-left md:right-14;
+    transition-all duration-100 scale-0 origin-left  md:left-10  md:top-3;
   }
   .text-sizes {
     @apply select-none text-sm;

@@ -1,6 +1,7 @@
 import { TbLeaf, TbPlug } from 'react-icons/tb';
 import { SiEventstore } from 'react-icons/si';
 import { GiRadarSweep } from 'react-icons/gi';
+import { GiBurningBook } from 'react-icons/gi';
 
 export default function SideBar({ setTab, curTab }) {
   const SideBarIcon = ({ icon, text = 'tooltip 💡', tab }) => (
@@ -33,6 +34,10 @@ export default function SideBar({ setTab, curTab }) {
         <p className='select-none  font-bold  text-slate-600'>Events</p>
       </div>
 
+      <div className='flex flex-col text-center'>
+        <SideBarIcon icon={<GiBurningBook size='50' />} text={'Logs'} tab={4} />
+        <p className='select-none  font-bold  text-slate-600'>Logs</p>
+      </div>
     </div>
   </>)
 }

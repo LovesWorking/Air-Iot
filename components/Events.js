@@ -24,14 +24,20 @@ export default function Events() {
   }
   function EventsToComponents() {
     return (<>
-      <div className='m-5 pb-20 h-full overflow-hidden overflow-y-auto    flex flex-wrap md:ml-20'>
+      <div className='m-5 pb-20 h-full overflow-hidden
+       overflow-x-auto    flex flex-wrap md:ml-20'>
         {events.map((el, i) => {
           return (<div key={i + 'Event-Container'}
-            className=' space-x-1 bg-white w-36 h-fit p-1 m-1 shadow-lg rounded-xl hover:border-2 border-sky-500 hover:-translate-y-3 ease-in-out duration-300 cursor-pointer'>
-            <div className='p-1 m-1 font-bold  text-sizes text-center' > {el.air.Name}</div>
-            <div className='flex flex-col space-x-2 space-y-4 '>
+            className=' space-x-1 bg-white w-36 h-fit
+             p-1 m-1 shadow-lg rounded-xl hover:border-2
+              border-sky-500 hover:-translate-y-3 
+              ease-in-out duration-300 cursor-pointer'>
+            <div className='p-1 m-1 font-bold  
+            text-sizes text-center' > {el.air.Name}</div>
+            <div className='flex flex-col space-x-2
+             space-y-4 '>
               <img className='w-3/4' src='https://assets.website-files.com/606ca67e54e3f68fa1be1f6b/606ca6e82cd654086fc1581c_awair_logo.svg'></img>
-              <div className='grid grid-cols-2 pb-7'>
+              <div className='grid grid-cols-2 pb-7 '>
                 {deviceInfo[i]?.air ?
                   <>
                     <div className='p-1 m-1 font-semibold w-1/3   text-sizes' >
@@ -42,20 +48,32 @@ export default function Events() {
                       {Math.ceil(deviceInfo[i].air.humid)}%</div>
                   </>
                   :
-                  <TbPlugConnectedX size='35' color='#FF1493' />
+                  <div className='ml-10'>
+                    <TbPlugConnectedX size='35' color='#FF1493' />
+                  </div>
+
                 }
               </div>
             </div>
             <div className='text-center m-1 flex flex-col items-center'>
               {el.plug.Name}
               {deviceInfo[i]?.plug?.status == -1 ?
-                <TbPlugConnectedX size='35' color='00BFFF' /> :
-                deviceInfo[i]?.plug?.status == 'on' ?
-                  <MdOfflineBolt size='25' color='#00BFFF' /> :
-                  <MdOfflineBolt size='25' color='gray' />}
+                <TbPlugConnectedX size='35' color='#00BFFF' />
+                :
+                deviceInfo[i]?.plug?.status == 'on'
+                  ?
+                  <div className='flex'>
+                    <MdOfflineBolt size='25' color='#00BFFF' />
+                    <p>{Math.ceil(deviceInfo[i].plug.power)}w</p>
+                  </div>
+                  :
+                  <div className='flex'>
+                    <MdOfflineBolt size='25' color='gray' />
+                    <p>0w</p>
+                  </div>}
             </div>
             <p className='text-center m-2'>
-              Plug will turn
+              will turn
               {' ' + el.onOrOF + ' '}
               when
 

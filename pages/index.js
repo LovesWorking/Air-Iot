@@ -6,6 +6,7 @@ import addDevice from '../lib/addDevice';
 import LocalDeviceScan from '../components/LocalDeviceScan'
 import SideBar from '../components/SideBar';
 import Events from '../components/Events';
+import Logs from '../components/Logs';
 export default function Home() {
   const [tab, setTab] = useState(-1);
   function ReturnTab(tab) {
@@ -18,6 +19,8 @@ export default function Home() {
         return <LocalDeviceScan />
       case 3:
         return <LocalEvents />
+      case 4:
+        return <Logs />
       default:
         return <Events />
     }
