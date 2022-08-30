@@ -29,7 +29,6 @@ Everyone is free to contribute. Fork the project, make changes and make a pull r
 
 ##Credits
 plasticrake - tplink-smarthome-api
-George Georgovassilis and Thomas Baust for figuring out the HS1XX encryption needed to comunicate to Tplink plugs.
-[https://blog.georgovassilis.com/2016/05/07/controlling-the-tp-link-hs100-wi-fi-smart-plug/]
+for figuring out the HS1XX encryption needed to comunicate to Tplink plugs.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+[George Georgovassilis and Thomas Baust](https://blog.georgovassilis.com/2016/05/07/controlling-the-tp-link-hs100-wi-fi-smart-plug/)
