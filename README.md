@@ -5,6 +5,8 @@ This was created for the purpose of automating greenhouses, swamp-coolers or any
 
 ## Currently only supports  Awair Element and TP-Link - Kasa Smart Wi-Fi Plugs. 
 Feel free to request other devices to be supported. 
+## Note:
+This was created within a few days and made with haste so this may needs some refactoring! I created this for my sister who needed to automate her Greenhouse on the cheap and for my wife who wanted to automate our swamp cooler that doesn't have built in tempature control.
 
 ## Quickstart
 
