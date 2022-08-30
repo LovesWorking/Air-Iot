@@ -24,10 +24,10 @@ You can also open the app on your phone or any other device as long as it's on t
  192.168.0.1:3000
 ```
 
-##Contributing
+## Contributing
 Everyone is free to contribute. Fork the project, make changes and make a pull request. If you find bugs open an issue, or you can fix it yourself just by forking, making changes and making a pull request.
 
-##Credits
-plasticrake for creating a fantastic API for all tplink devices * tplink-smarthome-api
+## Credits
+plasticrake for creating a fantastic API for all tplink devices \* tplink-smarthome-api
 [George Georgovassilis and Thomas Baust](https://blog.georgovassilis.com/2016/05/07/controlling-the-tp-link-hs100-wi-fi-smart-plug/)
 for figuring out the HS1XX encryption needed to comunicate to Tplink plugs.
