@@ -1,4 +1,7 @@
 ### AIR-IOT 
+
+<img src="https://user-images.githubusercontent.com/111514077/198312046-11f89e66-077a-4b65-9757-a4499642dbe3.png" width="450" height="600">
+
 This is used for automating non-iot devices through air quality data. There is no limit to the amout devices you can connect.
 
 This was created for the purpose of automating greenhouses, swamp-coolers or anything you need to automate through air-quality.
