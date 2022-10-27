@@ -1,6 +1,6 @@
 ### AIR-IOT 
 
-<img src="https://user-images.githubusercontent.com/111514077/198312046-11f89e66-077a-4b65-9757-a4499642dbe3.png" width="450" height="600">
+<img src="https://user-images.githubusercontent.com/111514077/198312046-11f89e66-077a-4b65-9757-a4499642dbe3.png" width="4000" height="3000">
 
 This is used for automating non-iot devices through air quality data. There is no limit to the amout devices you can connect.
 
